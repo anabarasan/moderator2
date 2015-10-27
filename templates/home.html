@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block maincontent %}
+<div class="row">
+    <h1>Topics <a href="/topic/new" class="btn btn-sm btn-primary" style="float:right;">Create Topic</a></h1>
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a data-toggle="tab" href="#topics">Fresh</a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#archived">Archived</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div id="topics" style="margin-left: 15px; margin-right: 15px;" class="tab-pane fade in active">
+        {% for topic in topics %}
+            {% if not topic.archived %}
+                <div class="row mT10">
+                    <div class="col-sm-11">
+                        <strong>{{ topic.topic }}</strong>
+                        <a href="/topic/{{ topic.key.urlsafe }}/like" style="margin-left: 10px; cursor: pointer; text-decoration:none;" class="glyphicon glyphicon-thumbs-up">
+                            <span>{{ topic.likes }}</span>
+                        </a>
+                    </div>
+                    <div class="col-sm-1">
+                        <a href="/topic/{{ topic.key.urlsafe }}" style="margin-left:10px;">edit</a>
+                    </div>
+                </div>
+                <div class="row mT10">
+                    <div class="col-sm-12">
+                        {{ topic.description }}
+                    </div>
+                </div>
+                <hr/>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div id="archived" style="margin-left: 15px; margin-right: 15px;" class="tab-pane fade">
+        {% for topic in topics %}
+            {% if topic.archived %}
+                <div class="row mT10">
+                    <div class="col-sm-11">
+                        <strong>{{ topic.topic }}</strong>
+                    </div>
+                    <div class="col-sm-1 hidden">
+                        <a href="/topic/{{ topic.key.urlsafe }}" style="margin-left:10px;">edit</a>
+                    </div>
+                </div>
+                <div class="row mT10">
+                    <div class="col-sm-12">
+                        {{ topic.description }}
+                    </div>
+                </div>
+                <hr/>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

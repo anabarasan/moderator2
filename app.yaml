@@ -1,0 +1,23 @@
+application: mongoose-moderator
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /js
+  static_dir: static/js
+
+- url: /css
+  static_dir: static/css
+
+- url: /fonts
+  static_dir: static/fonts
+
+- url: .*
+  script: application.app
+  secure: always
+
+libraries:
+- name: webapp2
+  version: "latest"

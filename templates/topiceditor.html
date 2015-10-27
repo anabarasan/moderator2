@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block maincontent %}
+
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <h3>Create Topic</h3>
+    </div>
+</div>
+
+{% if error %}
+    <div class="row text-center">
+        <div class="col-sm-12">
+            Ensure all mandatory fields are entered
+        </div>
+    </div>
+{% endif %} 
+
+<div class="row mT30">
+    <div class="col-sm-12 col-md-6 col-md-offset-3">
+        <form class="form" method="POST">
+            <div class="row mT20">
+                <label for="topic" class="control-label">Topic</label>
+            </div>
+            <div class="row mT10">
+                <input type="text" style="width:100%;" class="form-control" value="{{ topic.topic }}" name="topic" placeholder="Topic"/>
+            </div>
+            <div class="row mT10">
+                <label for="description">Description</label>
+            </div>
+            <div class="row mT10">
+                <textarea class="form-control" value="{{ topic.description }}" name="description" style="height:100px;"></textarea>
+            </div>
+            {% if edit %}
+            <div class="row mT10">
+                <label for="archive">Archive</label>
+            </div>
+            <div class="row mT10">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-danger {% if topic.archived %} active {% endif %}">
+                        <input type="radio" name="archive" value="yes" {% if topic.archived %} checked {% endif %}/> Yes
+                    </label>
+                    <label class="btn btn-danger {% if not topic.archived %} active {% endif %}">
+                        <input type="radio" name="archive" value="no" {% if not topic.archived %} checked {% endif %}/> No
+                    </label>
+                </div>
+            </div>
+            {% endif %}
+            <div class="row mT10 text-center">
+                <input type="submit" class="btn btn-primary" value="Save"/>
+                <a href="/" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

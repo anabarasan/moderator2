@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block maincontent %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Recover Password</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        Forgot your password? Enter username below to receive a link to recover your password.
+    </div>
+</div>
+
+{% if not_found %}
+    <strong>Not found!</strong> We could not found any user with the given username.
+{% endif %} 
+
+<div class="row text-center mT30">
+    <div class="col-sm-12 col-md-6">
+        <form class="form-horizontal" action="/forgot" method="POST">
+            <div class="row mT20">
+                <div class="col-sm-5">
+                    <input type="text" style="width:100%;" class="form-control" value="{{ username }}" name="username" placeholder="username"/>
+                </div>
+                <div class="col-sm-7">
+                    <input style="width:100%;" type="submit" class="btn btn-primary" value="Send password reset link"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

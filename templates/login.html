@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block maincontent %}
+
+<style>
+    .panel-login a {
+        font-weight:bold;
+        font-size:15px; 
+        text-decoration:none;
+    }
+    .login-error {
+        color:red;
+    }
+</style>
+
+<div class="row">
+    <h3 style="text-align:center;">Login</h1>
+</div>
+
+<div class="row text-center mT30">
+    <div class="col-sm-12 col-md-6 col-md-offset-3">
+        <form class="form-horizontal" action="/login" method="POST">
+            <div class="row mT10 panel-login">
+                <div class="col-sm-6 text-center">
+                    <a href="#">Login</a>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <a href="/signup">Register</a>
+                </div>
+            </div>
+            <div class="row mT20 login-error">
+                {% if failed %}
+                    <strong>Login failed!</strong> Check your credentials and try again.
+                {% endif %}
+            </div>
+            <div class="row mT20">
+                <div class="col-sm-12">
+                    <input class="form-control" type="text" value="{{ username }}" name="username" placeholder="username"/>
+                </div>
+            </div>
+            <div class="row mT20">
+                <div class="col-sm-12">
+                    <input class="form-control" type="password" name="password" placeholder="password"/>
+                </div>
+            </div>
+            <div class="row mT20">
+                <a href="/forgot">Forgot password</a>
+            </div>
+            <div class="row mT20">
+                <div class="col-sm-12 text-center">
+                    <input type="submit" class="btn btn-primary" value="Login" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
